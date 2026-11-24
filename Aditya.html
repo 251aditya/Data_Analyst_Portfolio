@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Kumar | Data Analyst & Machine Learning Portfolio</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            slate: {
+              850: '#141d2f',
+              900: '#0b1120',
+              950: '#060a14',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-300 selection:bg-cyan-500/30 selection:text-cyan-400 overflow-x-hidden">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/85 dark:bg-slate-950/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand Logo -->
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-slate-950 font-bold text-lg shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            AK
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold text-base tracking-tight text-slate-900 dark:text-white leading-none">Aditya Kumar</span>
+            <span class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 mt-0.5">DATA ANALYST • ML</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="#about" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Summary</a>
+          <a href="#skills" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Skills</a>
+          <a href="#experience" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Experience</a>
+          <a href="#projects" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Projects</a>
+          <a href="#education" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Credentials</a>
+          <a href="#contact" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Actions: Theme Toggle & CTA -->
+        <div class="flex items-center gap-3">
+          <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/70 transition-all">
+            <i id="theme-icon" class="fa-solid fa-sun text-amber-400"></i>
+          </button>
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-semibold text-sm shadow-md shadow-cyan-500/20 transition-all">
+            <span>Hire Me</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-1">
+      <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Summary & Metrics</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Technical Skills</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Experience</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+      <a href="#education" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Training & Education</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-cyan-600 dark:text-cyan-400 font-semibold">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+    <!-- Decorative Subtle Grid & Glow -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/3 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Content Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-xs font-mono font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Available for Data Analyst & BI / ML Roles • Pune, Maharashtra</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
+            Hi, I’m <span class="bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent">Aditya Kumar</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-200 flex flex-wrap items-center gap-2">
+            <span>Data Analyst</span>
+            <span class="text-cyan-500">|</span>
+            <span>Machine Learning</span>
+            <span class="text-cyan-500">|</span>
+            <span class="font-mono text-base sm:text-lg text-cyan-600 dark:text-cyan-400">Python, SQL, Power BI, Tableau</span>
+          </p>
+
+          <p class="text-base text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+            Data Analyst with 2 years of experience in data analysis, BI reporting, and dashboard development. Skilled in Python, SQL, Power BI, and Tableau, with expertise in transforming data into actionable business insights and supporting data-driven decision-making.
+          </p>
+
+          <!-- Contact Pills & Quick Copy -->
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <button onclick="copyText('kumar1801aditya@gmail.com', 'Email address')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 text-xs sm:text-sm text-slate-700 dark:text-slate-300 shadow-sm transition-all group">
+              <i class="fa-solid fa-envelope text-cyan-500"></i>
+              <span>kumar1801aditya@gmail.com</span>
+              <i class="fa-regular fa-copy text-slate-400 group-hover:text-cyan-400 ml-1"></i>
+            </button>
+
+            <button onclick="copyText('9296971799', 'Phone number')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 text-xs sm:text-sm text-slate-700 dark:text-slate-300 shadow-sm transition-all group">
+              <i class="fa-solid fa-phone text-emerald-500"></i>
+              <span>+91 9296971799</span>
+              <i class="fa-regular fa-copy text-slate-400 group-hover:text-emerald-400 ml-1"></i>
+            </button>
+
+            <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <i class="fa-solid fa-location-dot text-rose-500"></i>
+              <span>Pune, Maharashtra</span>
+            </span>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-3">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Explore Case Studies</span>
+            </a>
+
+            <a href="#experience" class="px-6 py-3.5 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-semibold text-sm border border-slate-200 dark:border-slate-700 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-briefcase text-cyan-500"></i>
+              <span>Work Experience</span>
+            </a>
+
+            <button onclick="openLinkedInToast()" class="px-5 py-3.5 rounded-xl bg-slate-900 dark:bg-slate-800/90 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-all flex items-center gap-2">
+              <i class="fa-brands fa-linkedin text-cyan-400 text-base"></i>
+              <span>LinkedIn</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Interactive KPI & BI Preview Card -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-2xl shadow-cyan-950/10 p-5 sm:p-6 backdrop-blur-sm">
+            <!-- Top Window Bar -->
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-200 dark:border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <span class="ml-2 text-xs font-mono text-slate-500 dark:text-slate-400">bi_executive_summary.pbix</span>
+              </div>
+              <!-- Interactive Dataset Switcher -->
+              <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg text-[11px] font-mono">
+                <button onclick="switchHeroDataset('bi')" id="btn-ds-bi" class="px-2.5 py-1 rounded-md bg-cyan-500 text-slate-950 font-semibold transition-all">BI Ops</button>
+                <button onclick="switchHeroDataset('ml')" id="btn-ds-ml" class="px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-cyan-400 transition-all">ML Models</button>
+              </div>
+            </div>
+
+            <!-- Live Interactive Chart Header -->
+            <div class="flex items-baseline justify-between mb-3">
+              <div>
+                <p id="hero-chart-title" class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">KPI Reporting Velocity</p>
+                <h3 id="hero-chart-metric" class="text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">+42.8% Decision Speed</h3>
+              </div>
+              <span id="hero-chart-badge" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">
+                100% Data QA
+              </span>
+            </div>
+
+            <!-- Interactive Canvas Visualization -->
+            <div class="relative w-full h-44 bg-slate-50 dark:bg-slate-950/70 rounded-xl border border-slate-200/80 dark:border-slate-800/80 p-3 mb-4">
+              <canvas id="heroChartCanvas" class="w-full h-full block"></canvas>
+            </div>
+
+            <!-- Mini Bottom Telemetry Grid -->
+            <div class="grid grid-cols-3 gap-2.5 text-center">
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/50">
+                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Dashboards</div>
+                <div class="text-sm font-bold text-cyan-600 dark:text-cyan-400 mt-0.5">10+ Live</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/50">
+                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Best ML Acc</div>
+                <div class="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">92.0%</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/50">
+                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Records ETL</div>
+                <div class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">50,000+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Metrics / Impact Counter Section -->
+  <section id="about" class="py-12 border-y border-slate-200 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Metric 1 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/40 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-calendar-check text-lg"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
+            <span class="counter" data-target="2">0</span>+
+          </div>
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Years Experience in Analytics & BI</p>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/40 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-chart-pie text-lg"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
+            <span class="counter" data-target="10">0</span>+
+          </div>
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Interactive Power BI & Tableau Dashboards</p>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/40 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-shield-halved text-lg"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
+            <span class="counter" data-target="100">0</span>%
+          </div>
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Data Reliability & Reconciliation</p>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/40 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-sitemap text-lg"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
+            <span class="counter" data-target="3">0</span>+
+          </div>
+          <p class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Business Units Supported</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section with Interactive Category Tabs -->
+  <section id="skills" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs font-mono font-semibold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">Analytical Stack</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Technical Skills & Tools</h2>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+          Filter across my end-to-end data toolkit—from ETL pipelines and SQL warehousing to BI storytelling and predictive machine learning.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="skill-filters" class="flex flex-wrap gap-2 mb-8">
+        <button data-category="all" class="skill-tab active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all">
+          All Skills
+        </button>
+        <button data-category="programming" class="skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+          Programming & Analytics
+        </button>
+        <button data-category="bi" class="skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+          BI & Visualization
+        </button>
+        <button data-category="ml" class="skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+          Machine Learning
+        </button>
+        <button data-category="engineering" class="skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+          Data Engineering & Databases
+        </button>
+        <button data-category="tools" class="skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+          Tools & AI
+        </button>
+      </div>
+
+      <!-- Dynamic Skills Grid -->
+      <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated via JS for crisp filtering & interactive proficiency bars -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional & Internship Experience Timeline -->
+  <section id="experience" class="py-20 bg-white/60 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Career Trajectory</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Work Experience</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">
+          Delivering high-reliability KPI reporting, statistical insights, and interactive business intelligence solutions.
+        </p>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="relative border-l-2 border-cyan-500/40 ml-3 sm:ml-6 space-y-10">
+        
+        <!-- Experience Item 1: Softobotics Technologies -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <!-- Timeline Dot -->
+          <span class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-cyan-500 ring-4 ring-slate-50 dark:ring-slate-950 shadow-md shadow-cyan-500/40"></span>
+          
+          <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/50 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-mono font-semibold mb-1.5">
+                  FULL-TIME ROLE
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Data Analyst</h3>
+                <p class="text-base font-semibold text-cyan-600 dark:text-cyan-400">SOFTOBOTICS TECHNOLOGIES</p>
+              </div>
+              <div class="sm:text-right text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+                <div class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold inline-block">
+                  May 2024 – Apr 2026
+                </div>
+                <div class="flex items-center sm:justify-end gap-1.5">
+                  <i class="fa-solid fa-location-dot text-cyan-500"></i>
+                  <span>Bengaluru, Karnataka</span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-cyan-500 mt-1 shrink-0"></i>
+                <span>Analyzed complex datasets using statistical techniques to generate actionable insights and support data-driven business decisions across multiple business functions.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-cyan-500 mt-1 shrink-0"></i>
+                <span>Designed and maintained <strong class="text-slate-900 dark:text-white">10+ interactive dashboards</strong> in Power BI and Tableau, visualizing KPIs used in business unit performance reviews.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-cyan-500 mt-1 shrink-0"></i>
+                <span>Led data cleaning, validation, and reconciliation across primary and secondary sources, achieving <strong class="text-slate-900 dark:text-white">100% data reliability</strong> for business intelligence reporting.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-cyan-500 mt-1 shrink-0"></i>
+                <span>Delivered weekly and monthly stakeholder reports for <strong class="text-slate-900 dark:text-white">3+ business units</strong>, enabling faster decision-making.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-cyan-500 mt-1 shrink-0"></i>
+                <span>Translated business requirements into analytical reports and dashboards, improving visibility of operational KPIs and enabling stakeholders to monitor performance trends.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Power BI</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Tableau</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">SQL</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Statistical Analysis</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Data Reconciliation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Item 2: Unified Mentor Private Limited -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <!-- Timeline Dot -->
+          <span class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-emerald-500 ring-4 ring-slate-50 dark:ring-slate-950 shadow-md shadow-emerald-500/40"></span>
+          
+          <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/50 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold mb-1.5">
+                  INTERNSHIP
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Data Analyst Intern</h3>
+                <p class="text-base font-semibold text-emerald-600 dark:text-emerald-400">UNIFIED MENTOR PRIVATE LIMITED</p>
+              </div>
+              <div class="sm:text-right text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+                <div class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold inline-block">
+                  Feb 2024 – May 2024
+                </div>
+                <div class="flex items-center sm:justify-end gap-1.5">
+                  <i class="fa-solid fa-location-dot text-emerald-500"></i>
+                  <span>Gurugram</span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                <span>Performed exploratory data analysis on <strong class="text-slate-900 dark:text-white">Amazon Sales</strong> and <strong class="text-slate-900 dark:text-white">India Crop Production</strong> datasets, identifying trends and generating domain-specific business insights.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                <span>Developed <strong class="text-slate-900 dark:text-white">Tableau dashboards</strong> to visualize key metrics and communicate analytical findings through interactive business reports.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">EDA</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Tableau</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Python</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Business Reporting</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Projects Showcase Section -->
+  <section id="projects" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs font-mono font-semibold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">Applied Machine Learning</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Featured Data & ML Projects</h2>
+        </div>
+
+        <!-- Project Filter Tabs -->
+        <div id="project-filters" class="flex flex-wrap gap-2">
+          <button data-filter="all" class="project-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all">
+            All Projects
+          </button>
+          <button data-filter="ml" class="project-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+            Machine Learning
+          </button>
+          <button data-filter="nlp" class="project-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+            NLP & Clustering
+          </button>
+          <button data-filter="regression" class="project-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all">
+            Regression
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Training, Education & Certifications Section -->
+  <section id="education" class="py-20 bg-white/60 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Academic & Technical Foundation</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Training, Education & Certifications</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Column: Training & Education -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Training Card -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
+                <i class="fa-solid fa-laptop-code text-lg"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono uppercase text-cyan-600 dark:text-cyan-400 font-semibold">Specialized Training</span>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">ALMABETTER, Bangalore</h3>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <p class="font-semibold text-slate-800 dark:text-slate-200">Data Scientist & Data Analyst</p>
+              <span class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-600 dark:text-slate-300">Jan 2023 – Feb 2024</span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Completed intensive project-based training in Python, SQL, machine learning, data analytics, and business intelligence.
+            </p>
+          </div>
+
+          <!-- Education Card -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                <i class="fa-solid fa-graduation-cap text-lg"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono uppercase text-emerald-600 dark:text-emerald-400 font-semibold">Academic Degrees</span>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Higher Education</h3>
+              </div>
+            </div>
+
+            <div class="space-y-5">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">Master of Commerce (M.Com) in Accountancy</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Nalanda Open University, Patna</p>
+                </div>
+                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 self-start sm:self-center">
+                  2019 – 2021
+                </span>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white">Bachelor of Commerce (B.Com) in Accountancy</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Magadh University, Patna</p>
+                </div>
+                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 self-start sm:self-center">
+                  2014 – 2017
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Certifications -->
+        <div class="lg:col-span-5">
+          <div class="p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                  <i class="fa-solid fa-award text-lg"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-mono uppercase text-amber-500 font-semibold">Verified Credentials</span>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white">Certifications</h3>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center gap-3.5 hover:border-cyan-500/40 transition-all">
+                  <div class="w-9 h-9 rounded-lg bg-cyan-500/15 text-cyan-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-brain"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Full Stack Data Science & AI</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">End-to-End Analytics & Machine Learning</p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center gap-3.5 hover:border-amber-500/40 transition-all">
+                  <div class="w-9 h-9 rounded-lg bg-amber-500/15 text-amber-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-chart-column"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Microsoft Power BI</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">DAX, Data Modeling & Executive Dashboards</p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center gap-3.5 hover:border-blue-500/40 transition-all">
+                  <div class="w-9 h-9 rounded-lg bg-blue-500/15 text-blue-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-chart-area"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Tableau Desktop & BI</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Visual Storytelling & Interactive KPIs</p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center gap-3.5 hover:border-emerald-500/40 transition-all">
+                  <div class="w-9 h-9 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Generative AI</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">AI-Augmented Analytics & Prompt Workflows</p>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex items-center gap-3.5 hover:border-purple-500/40 transition-all">
+                  <div class="w-9 h-9 rounded-lg bg-purple-500/15 text-purple-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-certificate"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Data Analyst Internship</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Unified Mentor Private Limited</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center justify-between">
+              <span>Domain Advantage: Commerce & Finance</span>
+              <span class="text-emerald-500 font-semibold">KPI & ROI Focused</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-850 border border-slate-800 p-8 sm:p-12 shadow-2xl text-white">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <!-- Left Contact Details -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="inline-block px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-400 text-xs font-mono font-semibold">
+              LET'S COLLABORATE
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+              Ready to turn raw data into <span class="text-cyan-400">strategic clarity?</span>
+            </h2>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Reach out for Data Analyst, Business Intelligence Developer, or Machine Learning opportunities in Pune or across India.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/70 border border-slate-700/70">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-mono text-slate-400">Email</div>
+                    <div class="text-sm font-semibold text-white">kumar1801aditya@gmail.com</div>
+                  </div>
+                </div>
+                <button onclick="copyText('kumar1801aditya@gmail.com', 'Email')" class="p-2.5 rounded-xl bg-slate-700/70 hover:bg-cyan-500 hover:text-slate-950 text-slate-300 transition-all" title="Copy Email">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/70 border border-slate-700/70">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-mono text-slate-400">Phone</div>
+                    <div class="text-sm font-semibold text-white">+91 9296971799</div>
+                  </div>
+                </div>
+                <button onclick="copyText('9296971799', 'Phone')" class="p-2.5 rounded-xl bg-slate-700/70 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-all" title="Copy Phone">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <div class="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-800/70 border border-slate-700/70">
+                <div class="w-10 h-10 rounded-xl bg-rose-500/15 text-rose-400 flex items-center justify-center">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-mono text-slate-400">Location</div>
+                  <div class="text-sm font-semibold text-white">Pune, Maharashtra, India</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Contact Form -->
+          <div class="lg:col-span-7">
+            <form id="contact-form" class="p-6 sm:p-8 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="sender-name" class="block text-xs font-mono uppercase text-slate-400 mb-2">Your Name</label>
+                  <input type="text" id="sender-name" required placeholder="e.g. Rohan Sharma" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors" />
+                </div>
+                <div>
+                  <label for="sender-email" class="block text-xs font-mono uppercase text-slate-400 mb-2">Your Email</label>
+                  <input type="email" id="sender-email" required placeholder="rohan@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors" />
+                </div>
+              </div>
+
+              <div>
+                <label for="sender-subject" class="block text-xs font-mono uppercase text-slate-400 mb-2">Inquiry Type</label>
+                <select id="sender-subject" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                  <option value="Data Analyst Opportunity">Data Analyst / BI Role Opportunity</option>
+                  <option value="Dashboard & BI Consultation">Power BI / Tableau Dashboard Project</option>
+                  <option value="Machine Learning Collaboration">Machine Learning / Predictive Modeling</option>
+                  <option value="General Networking">General Networking</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="sender-message" class="block text-xs font-mono uppercase text-slate-400 mb-2">Message</label>
+                <textarea id="sender-message" rows="4" required placeholder="Tell me about your data team, role, or analytics requirements..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 transition-colors"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Send Message to Aditya</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© <span id="current-year"></span> <strong class="text-slate-800 dark:text-slate-200">Aditya Kumar</strong> • Data Analyst & Machine Learning Portfolio</p>
+      <div class="flex items-center gap-4 font-mono">
+        <span>Pune, Maharashtra</span>
+        <span>•</span>
+        <button onclick="openLinkedInToast()" class="hover:text-cyan-500 transition-colors">LinkedIn</button>
+        <span>•</span>
+        <a href="#hero" class="hover:text-cyan-500 transition-colors">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Project Case Study Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden animate-fadeIn">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60">
+        <div>
+          <span id="modal-category" class="text-xs font-mono font-semibold uppercase text-cyan-600 dark:text-cyan-400">Project Case Study</span>
+          <h3 id="modal-title" class="text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">Project Title</h3>
+        </div>
+        <button id="close-modal-btn" aria-label="Close Modal" class="p-2.5 rounded-xl bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500 hover:text-white transition-all">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 sm:p-7 space-y-6 max-h-[80vh] overflow-y-auto">
+        <!-- Highlight KPI Strip -->
+        <div id="modal-kpis" class="grid grid-cols-3 gap-3">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Detailed Methodology -->
+        <div>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Analytical Workflow & Execution</h4>
+          <ul id="modal-bullets" class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            <!-- Populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Visual Model / Metric Comparison Chart -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between mb-3">
+            <h4 id="modal-chart-label" class="text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-slate-300 font-semibold">Performance Breakdown</h4>
+            <span class="text-[11px] font-mono text-emerald-500">Validated Metrics</span>
+          </div>
+          <div id="modal-bars" class="space-y-3">
+            <!-- Animated progress bars populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Tech Stack Badges -->
+        <div>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Tech Stack & Algorithms</h4>
+          <div id="modal-tags" class="flex flex-wrap gap-2">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // --- 1. Dark / Light Mode Toggle ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    function updateThemeIcon() {
+      if (htmlEl.classList.contains('dark')) {
+        themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      } else {
+        themeIcon.className = 'fa-solid fa-moon text-slate-700';
+      }
+      drawHeroChart(); // Redraw canvas to adapt colors
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      updateThemeIcon();
+    });
+
+    // --- 2. Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // --- 3. Toast Notification & Clipboard Helper ---
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const iconClass = type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-cyan-400';
+      toast.className = 'pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-xl text-xs sm:text-sm font-medium transform transition-all duration-300 translate-y-2 opacity-0';
+      toast.innerHTML = `<i class="fa-solid ${iconClass} text-base"></i><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    function copyText(text, label) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(`${label} copied to clipboard: ${text}`, 'success');
+      } catch (err) {
+        showToast(`Could not copy ${label}`, 'info');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function openLinkedInToast() {
+      showToast('LinkedIn profile shortcut ready — connect with Aditya Kumar (Pune, Maharashtra)!', 'info');
+    }
+
+    // --- 4. Interactive Hero Canvas Chart ---
+    let currentHeroMode = 'bi';
+    const heroDatasets = {
+      bi: {
+        title: 'KPI Reporting & Data Reliability',
+        metric: '100% Data QA • 10+ Dashboards',
+        badge: 'BI & Operations',
+        labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6'],
+        values: [68, 76, 84, 91, 97, 100],
+        color: '#22d3ee'
+      },
+      ml: {
+        title: 'Predictive Model Accuracy Benchmark',
+        metric: '92.0% Malware Classification',
+        badge: 'XGBoost + GridSearch',
+        labels: ['NB', 'LR', 'DT', 'GB', 'RF', 'XGB'],
+        values: [78, 83, 85, 89, 90, 92],
+        color: '#34d399'
+      }
+    };
+
+    function switchHeroDataset(mode) {
+      currentHeroMode = mode;
+      const ds = heroDatasets[mode];
+      document.getElementById('hero-chart-title').textContent = ds.title;
+      document.getElementById('hero-chart-metric').textContent = ds.metric;
+      document.getElementById('hero-chart-badge').textContent = ds.badge;
+
+      const btnBi = document.getElementById('btn-ds-bi');
+      const btnMl = document.getElementById('btn-ds-ml');
+      if (mode === 'bi') {
+        btnBi.className = 'px-2.5 py-1 rounded-md bg-cyan-500 text-slate-950 font-semibold transition-all';
+        btnMl.className = 'px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-cyan-400 transition-all';
+      } else {
+        btnMl.className = 'px-2.5 py-1 rounded-md bg-emerald-500 text-slate-950 font-semibold transition-all';
+        btnBi.className = 'px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-cyan-400 transition-all';
+      }
+      drawHeroChart();
+    }
+
+    function drawHeroChart() {
+      const canvas = document.getElementById('heroChartCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+      const isDark = htmlEl.classList.contains('dark');
+      const ds = heroDatasets[currentHeroMode];
+
+      ctx.clearRect(0, 0, width, height);
+
+      const padLeft = 28;
+      const padRight = 16;
+      const padTop = 18;
+      const padBottom = 24;
+      const chartW = width - padLeft - padRight;
+      const chartH = height - padTop - padBottom;
+
+      // Grid lines
+      ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.12)' : 'rgba(100, 116, 139, 0.15)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 3; i++) {
+        const y = padTop + (chartH / 3) * i;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(width - padRight, y);
+        ctx.stroke();
+      }
+
+      // Compute points
+      const minVal = 60;
+      const maxVal = 105;
+      const points = ds.values.map((val, idx) => {
+        const x = padLeft + (chartW / (ds.values.length - 1)) * idx;
+        const y = padTop + chartH - ((val - minVal) / (maxVal - minVal)) * chartH;
+        return { x, y, val, label: ds.labels[idx] };
+      });
+
+      // Area gradient
+      const grad = ctx.createLinearGradient(0, padTop, 0, padTop + chartH);
+      grad.addColorStop(0, currentHeroMode === 'bi' ? 'rgba(34, 211, 238, 0.28)' : 'rgba(52, 211, 153, 0.28)');
+      grad.addColorStop(1, 'rgba(34, 211, 238, 0.0)');
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, padTop + chartH);
+      points.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.lineTo(points[points.length - 1].x, padTop + chartH);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Line stroke
+      ctx.beginPath();
+      points.forEach((p, i) => {
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.strokeStyle = ds.color;
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Nodes & Labels
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      points.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = ds.color;
+        ctx.stroke();
+
+        // Value label above point
+        ctx.fillStyle = isDark ? '#e2e8f0' : '#1e293b';
+        ctx.fillText(p.val + '%', p.x, p.y - 8);
+
+        // X-axis label
+        ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
+        ctx.fillText(p.label, p.x, height - 6);
+      });
+    }
+
+    window.addEventListener('resize', drawHeroChart);
+
+    // --- 5. Animated KPI Counters ---
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 1200;
+        const stepTime = Math.max(Math.floor(duration / target), 20);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += Math.ceil(target / 40);
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = current;
+          }
+        }, stepTime);
+      });
+    }
+
+    // --- 6. Technical Skills Data & Interactive Filtering ---
+    const skillsData = [
+      {
+        category: 'programming',
+        title: 'Programming & Analytics',
+        icon: 'fa-code',
+        accent: 'cyan',
+        items: ['Python', 'SQL', 'MS Excel', 'Statistical Analysis', 'Hypothesis Testing', 'Data Analysis']
+      },
+      {
+        category: 'bi',
+        title: 'BI & Visualization',
+        icon: 'fa-chart-pie',
+        accent: 'emerald',
+        items: ['Power BI', 'Tableau', 'KPI Dashboards', 'Data Visualization', 'Business Intelligence']
+      },
+      {
+        category: 'ml',
+        title: 'Machine Learning',
+        icon: 'fa-robot',
+        accent: 'cyan',
+        items: ['Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn']
+      },
+      {
+        category: 'engineering',
+        title: 'Data Engineering',
+        icon: 'fa-network-wired',
+        accent: 'emerald',
+        items: ['ETL Pipelines', 'Data Wrangling', 'Data Modelling']
+      },
+      {
+        category: 'engineering',
+        title: 'Databases',
+        icon: 'fa-database',
+        accent: 'cyan',
+        items: ['SQL Server', 'PostgreSQL', 'DBeaver']
+      },
+      {
+        category: 'tools',
+        title: 'Developer Tools & AI',
+        icon: 'fa-wand-magic-sparkles',
+        accent: 'emerald',
+        items: ['GitHub', 'VS Code', 'Jupyter Notebook', 'Google Colab', 'ChatGPT', 'Claude', 'Gemini', 'Generative AI']
+      }
+    ];
+
+    function renderSkills(filterCategory = 'all') {
+      const grid = document.getElementById('skills-grid');
+      const filtered = filterCategory === 'all'
+        ? skillsData
+        : skillsData.filter(s => s.category === filterCategory);
+
+      grid.innerHTML = filtered.map(group => {
+        const iconBg = group.accent === 'cyan'
+          ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
+          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400';
+
+        const badges = group.items.map(skill => `
+          <span class="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/70 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-cyan-500/50 transition-colors">
+            ${skill}
+          </span>
+        `).join('');
+
+        return `
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/40 transition-all">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center">
+                <i class="fa-solid ${group.icon} text-base"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">${group.title}</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${badges}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.querySelectorAll('.skill-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.skill-tab').forEach(b => {
+          b.className = 'skill-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all';
+        });
+        btn.className = 'skill-tab active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all';
+        renderSkills(btn.getAttribute('data-filter'));
+      });
+    });
+
+    // --- 7. Interactive Projects & Case Study Modal ---
+    const projectsData = [
+      {
+        id: 'zomato',
+        title: 'Zomato Restaurant Clustering & Sentiment Analysis',
+        categories: ['nlp', 'ml'],
+        badge: 'NLP & Clustering',
+        icon: 'fa-utensils',
+        summary: 'Cleaned and processed 50,000+ restaurant records with feature engineering on cost, cuisine, and ratings, paired with NLP sentiment clustering on 10,000+ customer reviews.',
+        highlightMetric: '50,000+ Records',
+        tags: ['Python', 'NLTK', 'Bag-of-Words', 'K-Means', 'Agglomerative Clustering', 'Pandas'],
+        kpis: [
+          { label: 'Records Cleaned', value: '50,000+' },
+          { label: 'Reviews Analyzed', value: '10,000+' },
+          { label: 'Clustering Methods', value: 'K-Means & Agglom.' }
+        ],
+        bullets: [
+          'Cleaned and processed 50,000+ restaurant records, performing feature engineering on cost, cuisine, and rating attributes.',
+          'Analyzed 10,000+ customer reviews using NLTK and Bag-of-Words text vectorization to extract sentiment polarity.',
+          'Applied K-Means and Agglomerative Clustering to uncover actionable restaurant market segments for targeted recommendations.'
+        ],
+        chartLabel: 'Pipeline Data Volume & Segmentation Coverage',
+        bars: [
+          { name: 'Data Cleaning & Deduplication (50k+ rows)', pct: 100 },
+          { name: 'Feature Engineering (Cost, Cuisine, Rating)', pct: 94 },
+          { name: 'NLP Review Sentiment Extraction (10k+ reviews)', pct: 89 },
+          { name: 'Cluster Silhouette Separation Score', pct: 84 }
+        ]
+      },
+      {
+        id: 'malware',
+        title: 'Android Authenticity Prediction (Malware Classification)',
+        categories: ['ml'],
+        badge: 'Classification • 92% Acc',
+        icon: 'fa-shield-virus',
+        summary: 'Built a binary malware classification pipeline comparing Logistic Regression, Decision Trees, Naive Bayes, Gradient Boosting, and XGBoost with Grid Search CV.',
+        highlightMetric: '92% Accuracy',
+        tags: ['XGBoost', 'Gradient Boosting', 'Scikit-Learn', 'GridSearchCV', 'Logistic Regression'],
+        kpis: [
+          { label: 'Peak Accuracy', value: '92.0%' },
+          { label: 'Models Benchmarked', value: '5 Classifiers' },
+          { label: 'Optimization', value: 'Grid Search CV' }
+        ],
+        bullets: [
+          'Developed a binary malware classifier using Logistic Regression, Decision Trees, Naive Bayes, Gradient Boosting, and XGBoost.',
+          'Optimized hyperparameters using Grid Search Cross-Validation to prevent overfitting and maximize generalization.',
+          'Achieved 92% classification accuracy in distinguishing malicious and benign Android applications.'
+        ],
+        chartLabel: 'Classifier Accuracy Comparison (Cross-Validated)',
+        bars: [
+          { name: 'XGBoost (GridSearchCV Tuned)', pct: 92 },
+          { name: 'Gradient Boosting Classifier', pct: 89 },
+          { name: 'Decision Tree Classifier', pct: 85 },
+          { name: 'Logistic Regression', pct: 83 },
+          { name: 'Naive Bayes', pct: 78 }
+        ]
+      },
+      {
+        id: 'bikesharing',
+        title: 'Bike Sharing Demand Prediction',
+        categories: ['regression', 'ml'],
+        badge: 'Regression Forecasting',
+        icon: 'fa-bicycle',
+        summary: 'Developed hourly and seasonal bike rental demand forecasting models using Linear Regression, Random Forest, and XGBoost evaluated across MSE, RMSE, MAE, and R².',
+        highlightMetric: 'R² & RMSE Tuned',
+        tags: ['XGBoost Regressor', 'Random Forest', 'Linear Regression', 'RMSE / MAE / R²', 'Python'],
+        kpis: [
+          { label: 'Algorithms Tested', value: '3 Regressors' },
+          { label: 'Error Metrics', value: 'MSE, RMSE, MAE' },
+          { label: 'Fit Metric', value: 'R² Score' }
+        ],
+        bullets: [
+          'Developed demand forecasting models using Linear Regression, Random Forest, and XGBoost to predict bike rental demand.',
+          'Engineered temporal, weather, and seasonality features to capture peak commuting patterns.',
+          'Evaluated model performance using MSE, RMSE, MAE, and R² metrics and compared model effectiveness for operational fleet planning.'
+        ],
+        chartLabel: 'Model R² Variance Explained Comparison',
+        bars: [
+          { name: 'XGBoost Regressor (R² Score)', pct: 93 },
+          { name: 'Random Forest Regressor (R² Score)', pct: 90 },
+          { name: 'Linear Regression Baseline (R² Score)', pct: 74 }
+        ]
+      }
+    ];
+
+    function renderProjects(filter = 'all') {
+      const grid = document.getElementById('projects-grid');
+      const filtered = filter === 'all'
+        ? projectsData
+        : projectsData.filter(p => p.categories.includes(filter));
+
+      grid.innerHTML = filtered.map(proj => `
+        <div class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-sm hover:border-cyan-500/50 hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/15 to-emerald-500/15 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
+                <i class="fa-solid ${proj.icon} text-lg"></i>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">
+                ${proj.highlightMetric}
+              </span>
+            </div>
+
+            <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-semibold">
+              ${proj.badge}
+            </span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-3 group-hover:text-cyan-500 transition-colors">
+              ${proj.title}
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+              ${proj.summary}
+            </p>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              ${proj.tags.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">${t}</span>`).join('')}
+            </div>
+
+            <button onclick="openProjectModal('${proj.id}')" class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-cyan-500 dark:hover:bg-cyan-500 text-white hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>View Interactive Metrics & Details</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.project-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.project-tab').forEach(b => {
+          b.className = 'project-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 transition-all';
+        });
+        btn.className = 'project-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all';
+        renderProjects(btn.getAttribute('data-filter'));
+      });
+    });
+
+    // Modal Controls
+    const modalEl = document.getElementById('project-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function openProjectModal(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      if (!proj) return;
+
+      document.getElementById('modal-category').textContent = proj.badge;
+      document.getElementById('modal-title').textContent = proj.title;
+      document.getElementById('modal-chart-label').textContent = proj.chartLabel;
+
+      document.getElementById('modal-kpis').innerHTML = proj.kpis.map(k => `
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/70 text-center">
+          <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400">${k.label}</div>
+          <div class="text-sm sm:text-base font-extrabold text-cyan-600 dark:text-cyan-400 mt-0.5">${k.value}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('modal-bullets').innerHTML = proj.bullets.map(b => `
+        <li class="flex items-start gap-2.5">
+          <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+          <span>${b}</span>
+        </li>
+      `).join('');
+
+      document.getElementById('modal-bars').innerHTML = proj.bars.map(bar => `
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-700 dark:text-slate-300">${bar.name}</span>
+            <span class="font-bold text-cyan-600 dark:text-cyan-400">${bar.pct}%</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+            <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 transition-all duration-700" style="width: ${bar.pct}%"></div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('modal-tags').innerHTML = proj.tags.map(t => `
+        <span class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">${t}</span>
+      `).join('');
+
+      modalEl.classList.remove('hidden');
+      modalEl.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      modalEl.classList.add('hidden');
+      modalEl.classList.remove('flex');
+    }
+
+    closeModalBtn.addEventListener('click', closeProjectModal);
+    modalEl.addEventListener('click', (e) => {
+      if (e.target === modalEl) closeProjectModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) {
+        closeProjectModal();
+      }
+    });
+
+    // --- 8. Contact Form Submission Handler ---
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('sender-name').value.trim();
+      const subject = document.getElementById('sender-subject').value;
+      showToast(`Thank you, ${name}! Your "${subject}" message has been logged for Aditya Kumar.`, 'success');
+      e.target.reset();
+    });
+
+    // Initialize Views on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSkills('all');
+      renderProjects('all');
+      animateCounters();
+      setTimeout(drawHeroChart, 50);
+    });
+  </script>
+</body>
+</html>
